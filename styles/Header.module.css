@@ -1,0 +1,17 @@
+.table {
+    min-width: 750px;
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.thStyle {
+    background-color: rgb(85, 84, 84);
+    padding: 10px 0;
+    color: white;
+    font-weight: 400;
+    /* width: 50px; */
+}
+
+.exeptThStyle {
+    width: 300px;
+}
