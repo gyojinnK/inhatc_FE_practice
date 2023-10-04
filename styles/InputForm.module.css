@@ -1,0 +1,37 @@
+.formBg {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.form {
+    background-color: white;
+    width: 20vw;
+    height: 40vh;
+    left: calc(50% - 10vw);
+    top: calc(50% - 20vh);
+    position: absolute;
+    border-radius: 25px;
+    box-shadow: rgb(78, 78, 78) 5px 5px 10px;
+}
+
+.btnWrap {
+    width: 200px;
+    height: 30px;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    border: 1px solid rgb(85, 84, 84);
+    border-radius: 25px;
+}
+
+.btn:hover {
+    color: white;
+    background-color: rgb(85, 84, 84);
+}
