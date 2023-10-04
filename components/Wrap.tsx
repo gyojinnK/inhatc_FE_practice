@@ -1,7 +1,9 @@
 "use client";
-import Header from "./Header";
+import Table from "./Table";
 import Access from "./SubInfo";
 import { useState } from "react";
+import Header from "./Header";
+import InputForm from "./Create/InputForm";
 
 const DUMMY_DATA = [
     {
@@ -28,11 +30,13 @@ const DUMMY_DATA = [
 
 const Wrap = () => {
     const [data, setData] = useState(DUMMY_DATA);
+    const [isInputOpen, setIsInputOpen] = useState(false);
 
     return (
         <>
-            <Header data={data} />
-            {/* <Access /> */}
+            <Header grade={1} onIsInputOpen={setIsInputOpen} />
+            <Table data={data} />
+            {isInputOpen ? <InputForm onIsInputOpen={setIsInputOpen} /> : null}
         </>
     );
 };
