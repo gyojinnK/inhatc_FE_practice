@@ -12,7 +12,9 @@ const Header = (props: any) => {
                 <li className={css.li} onClick={inputOpenHandler}>
                     추가
                 </li>
-                <li className={css.li}>삭제</li>
+                <li className={css.li} onClick={props.onDeleteId}>
+                    삭제
+                </li>
                 <li className={css.li}>저장</li>
             </ul>
         </header>
