@@ -28,23 +28,23 @@ const InputForm = (props: any) => {
     };
 
     const gradeChangeHandler = (e: any) => {
-        setEnteredGrade(e.target.value);
+        setEnteredGrade(parseInt(e.target.value));
     };
 
     const attendanceChangeHandler = (e: any) => {
-        setEnteredAttendance(e.target.value);
+        setEnteredAttendance(parseInt(e.target.value));
     };
 
     const practiceChangeHandler = (e: any) => {
-        setEnteredPractice(e.target.value);
+        setEnteredPractice(parseInt(e.target.value));
     };
 
     const middleChangeHandler = (e: any) => {
-        setEnteredMiddle(e.target.value);
+        setEnteredMiddle(parseInt(e.target.value));
     };
 
     const finalChangeHandler = (e: any) => {
-        setEnteredFinal(e.target.value);
+        setEnteredFinal(parseInt(e.target.value));
     };
 
     const submitHandler = (e: any) => {
@@ -59,7 +59,11 @@ const InputForm = (props: any) => {
             practice: enteredPractice,
             middle: enteredMiddle,
             final: enteredFinal,
-            selected: 0,
+            totalScore:
+                enteredAttendance +
+                enteredPractice +
+                enteredMiddle +
+                enteredFinal,
         };
         props.onAddNewData(finalData);
         props.onIsInputOpen(false);
