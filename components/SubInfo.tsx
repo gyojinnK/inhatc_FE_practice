@@ -5,27 +5,20 @@ import LineCalc from "./LineCalc";
 
 const SubInfo = (props: any): any => {
     const [select, setSelect] = useState(false);
-    const [total, setTotal] = useState(0);
     // const [avg, setAvg] = useState(0.0);
     const [score, setScore] = useState("");
 
     useEffect(() => {
-        setTotal(
-            parseInt(props.attendance) +
-                parseInt(props.practice) +
-                parseInt(props.middle) +
-                parseInt(props.final)
-        );
         setScore(() => {
             let s = "";
-            if (total > 95) s = "A+";
-            else if (95 >= total && total > 90) s = "A0";
-            else if (90 >= total && total > 85) s = "B+";
-            else if (85 >= total && total > 80) s = "B0";
-            else if (80 >= total && total > 75) s = "C+";
-            else if (75 >= total && total > 70) s = "C0";
-            else if (70 >= total && total > 65) s = "D+";
-            else if (65 >= total && total > 60) s = "D0";
+            if (props.totalScore > 95) s = "A+";
+            else if (95 >= props.totalScore && props.totalScore > 90) s = "A0";
+            else if (90 >= props.totalScore && props.totalScore > 85) s = "B+";
+            else if (85 >= props.totalScore && props.totalScore > 80) s = "B0";
+            else if (80 >= props.totalScore && props.totalScore > 75) s = "C+";
+            else if (75 >= props.totalScore && props.totalScore > 70) s = "C0";
+            else if (70 >= props.totalScore && props.totalScore > 65) s = "D+";
+            else if (65 >= props.totalScore && props.totalScore > 60) s = "D0";
             else s = "F";
             return s;
         });
@@ -34,7 +27,6 @@ const SubInfo = (props: any): any => {
     const selectHandler = () => {
         select ? setSelect(false) : setSelect(true);
         props.onLifting(props.id);
-        console.log("SubINfo: " + props.id);
     };
 
     const optionalStyle = {
@@ -74,7 +66,11 @@ const SubInfo = (props: any): any => {
                 {props.grade == "1" ? (
                     <LineCalc select={select} total={" "} score={"P"} />
                 ) : (
-                    <LineCalc select={select} total={total} score={score} />
+                    <LineCalc
+                        select={select}
+                        total={props.totalScore}
+                        score={score}
+                    />
                 )}
             </tr>
             <style jsx>
