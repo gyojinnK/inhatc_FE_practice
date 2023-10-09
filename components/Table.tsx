@@ -7,7 +7,6 @@ import Footer from "./Footer";
 
 const Table = (props: any) => {
     const [idList, setIdList]: any = useState([]);
-    const [collectTotal, setCollectTotal] = useState([]);
 
     const idLiftingHandler = (selectedId: any) => {
         if (idList.includes(selectedId)) {
@@ -56,7 +55,6 @@ const Table = (props: any) => {
                             totalScore={elem.totalScore}
                             idList={idList}
                             onLifting={idLiftingHandler}
-                            onSetCollectTotal={setCollectTotal}
                             save={props.save}
                         />
                     ))}
