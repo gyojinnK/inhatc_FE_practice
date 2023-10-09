@@ -5,50 +5,24 @@ import { useState } from "react";
 import Header from "./Header";
 import InputForm from "./InputForm";
 
-const DUMMY_DATA = [
-    {
-        id: "1",
-        complete: "전공",
-        essential: "필수",
-        sub_name: "프론트엔드 개발 실습",
-        grade: 3,
-        attendance: 20,
-        practice: 10,
-        middle: 22,
-        final: 13,
-    },
-    {
-        id: "2",
-        complete: "전공",
-        essential: "필수",
-        sub_name: "클라우드 컴퓨팅",
-        grade: 3,
-        attendance: 20,
-        practice: 20,
-        middle: 30,
-        final: 30,
-    },
-];
-
-const Wrap = () => {
-    const [data, setData] = useState(DUMMY_DATA);
-    const [deleteIds, setDeleteIDs]: any = useState([]);
+const Wrap = (props: any) => {
+    const [data, setData] = useState(props.data);
     const [isInputOpen, setIsInputOpen] = useState(false);
+    const [deleteIds, setDeleteIDs]: any = useState([]);
+    const [isSave, setIsSave] = useState(false);
 
     const addDataHandler = (addFinalData: any) => {
-        console.log(addFinalData);
-        setData((prev) => {
+        setData((prev: any) => {
             return [...prev, addFinalData];
         });
     };
 
     const idLiftingHandler = (idList: any) => {
-        console.log("Wrap: " + idList);
         setDeleteIDs(idList);
     };
 
     const deleteByIdHandler = () => {
-        setData((prev) => {
+        setData((prev: any) => {
             return prev.filter(
                 (elem: { id: any }) => !deleteIds.includes(elem.id)
             );
@@ -58,11 +32,13 @@ const Wrap = () => {
     return (
         <>
             <Header
-                grade={1}
+                grade={props.grade}
                 onIsInputOpen={setIsInputOpen}
                 onDeleteId={deleteByIdHandler}
+                save={isSave}
+                onIsSave={setIsSave}
             />
-            <Table data={data} onLiftingId={idLiftingHandler} />
+            <Table data={data} onLiftingId={idLiftingHandler} save={isSave} />
             {isInputOpen ? (
                 <InputForm
                     onIsInputOpen={setIsInputOpen}
