@@ -2,8 +2,26 @@
 
 import css from "@/styles/Table.module.css";
 import SubInfo from "./SubInfo";
+import { useEffect, useState } from "react";
 
-const Header = (props: any) => {
+const Table = (props: any) => {
+    const [idList, setIdList]: any = useState([]);
+
+    const idLiftingHandler = (selectedId: any) => {
+        console.log("Table: " + selectedId);
+        if (idList.includes(selectedId)) {
+            setIdList(idList.filter((item: any) => item != selectedId));
+        } else {
+            setIdList((prev: any) => {
+                return [...prev, selectedId];
+            });
+        }
+    };
+
+    useEffect(() => {
+        props.onLiftingId(idList);
+    }, [idList]);
+
     return (
         <>
             <table className={css.table}>
@@ -25,6 +43,7 @@ const Header = (props: any) => {
                 <tbody>
                     {props.data.map(
                         (elem: {
+                            id: any;
                             sub_name: any;
                             complete: any;
                             essential: any;
@@ -35,7 +54,8 @@ const Header = (props: any) => {
                             final: any;
                         }): any => (
                             <SubInfo
-                                key={elem.sub_name}
+                                key={elem.id}
+                                id={elem.id}
                                 complete={elem.complete}
                                 essential={elem.essential}
                                 sub_name={elem.sub_name}
@@ -44,6 +64,8 @@ const Header = (props: any) => {
                                 practice={elem.practice}
                                 middle={elem.middle}
                                 final={elem.final}
+                                idList={idList}
+                                onLifting={idLiftingHandler}
                             />
                         )
                     )}
@@ -62,4 +84,4 @@ const Header = (props: any) => {
     );
 };
 
-export default Header;
+export default Table;
