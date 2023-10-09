@@ -4,6 +4,9 @@ const Header = (props: any) => {
     const inputOpenHandler = () => {
         props.onIsInputOpen(true);
     };
+    const saveHandler = () => {
+        props.save ? props.onIsSave(false) : props.onIsSave(true);
+    };
 
     return (
         <header className={css.header}>
@@ -15,7 +18,9 @@ const Header = (props: any) => {
                 <li className={css.li} onClick={props.onDeleteId}>
                     삭제
                 </li>
-                <li className={css.li}>저장</li>
+                <li className={css.li} onClick={saveHandler}>
+                    저장
+                </li>
             </ul>
         </header>
     );
