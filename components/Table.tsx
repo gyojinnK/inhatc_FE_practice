@@ -3,12 +3,13 @@
 import css from "@/styles/Table.module.css";
 import SubInfo from "./SubInfo";
 import { useEffect, useState } from "react";
+import Footer from "./Footer";
 
 const Table = (props: any) => {
     const [idList, setIdList]: any = useState([]);
+    const [collectTotal, setCollectTotal] = useState([]);
 
     const idLiftingHandler = (selectedId: any) => {
-        console.log("Table: " + selectedId);
         if (idList.includes(selectedId)) {
             setIdList(idList.filter((item: any) => item != selectedId));
         } else {
@@ -21,7 +22,6 @@ const Table = (props: any) => {
     useEffect(() => {
         props.onLiftingId(idList);
     }, [idList]);
-
     return (
         <>
             <table className={css.table}>
@@ -41,35 +41,29 @@ const Table = (props: any) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.data.map(
-                        (elem: {
-                            id: any;
-                            sub_name: any;
-                            complete: any;
-                            essential: any;
-                            grade: any;
-                            attendance: any;
-                            practice: any;
-                            middle: any;
-                            final: any;
-                        }): any => (
-                            <SubInfo
-                                key={elem.id}
-                                id={elem.id}
-                                complete={elem.complete}
-                                essential={elem.essential}
-                                sub_name={elem.sub_name}
-                                grade={elem.grade}
-                                attendance={elem.attendance}
-                                practice={elem.practice}
-                                middle={elem.middle}
-                                final={elem.final}
-                                idList={idList}
-                                onLifting={idLiftingHandler}
-                            />
-                        )
-                    )}
+                    {props.data.map((elem: any) => (
+                        <SubInfo
+                            key={elem.id}
+                            id={elem.id}
+                            complete={elem.complete}
+                            essential={elem.essential}
+                            sub_name={elem.sub_name}
+                            grade={elem.grade}
+                            attendance={elem.attendance}
+                            practice={elem.practice}
+                            middle={elem.middle}
+                            final={elem.final}
+                            totalScore={elem.totalScore}
+                            idList={idList}
+                            onLifting={idLiftingHandler}
+                            onSetCollectTotal={setCollectTotal}
+                            save={props.save}
+                        />
+                    ))}
                 </tbody>
+                <tfoot>
+                    <Footer data={props.data} save={props.save} />
+                </tfoot>
             </table>
             <style jsx>{`
                 th {
