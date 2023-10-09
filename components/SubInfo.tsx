@@ -72,17 +72,9 @@ const SubInfo = (props: any): any => {
                 </td>
 
                 {props.grade == "1" ? (
-                    <LineCalc
-                        otionalStyle={optionalStyle}
-                        total={" "}
-                        score={"P"}
-                    />
+                    <LineCalc select={select} total={" "} score={"P"} />
                 ) : (
-                    <LineCalc
-                        otionalStyle={optionalStyle}
-                        total={total}
-                        score={score}
-                    />
+                    <LineCalc select={select} total={total} score={score} />
                 )}
             </tr>
             <style jsx>
