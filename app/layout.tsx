@@ -16,6 +16,7 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <h1>Front-end 과제</h1>
+                <p>201944012 강교진</p>
                 {children}
             </body>
         </html>

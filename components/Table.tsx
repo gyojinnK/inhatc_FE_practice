@@ -21,6 +21,7 @@ const Table = (props: any) => {
     useEffect(() => {
         props.onLiftingId(idList);
     }, [idList]);
+
     return (
         <>
             <table className={css.table}>
@@ -40,7 +41,7 @@ const Table = (props: any) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.data.map((elem: any) => (
+                    {props.data?.map((elem: any) => (
                         <SubInfo
                             key={elem.id}
                             id={elem.id}

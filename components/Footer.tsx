@@ -15,40 +15,40 @@ const Footer = (props: any) => {
     useEffect(() => {
         setTotalGrade(() => {
             let sum = 0;
-            props.data.map((item: any) => (sum += item.grade));
+            props.data?.map((item: any) => (sum += item.grade));
             return sum;
         });
         setTotalAttendance(() => {
             let sum = 0;
-            props.data.map((item: any) => (sum += item.attendance));
+            props.data?.map((item: any) => (sum += item.attendance));
             return sum;
         });
         setTotalPractice(() => {
             let sum = 0;
-            props.data.map((item: any) => (sum += item.practice));
+            props.data?.map((item: any) => (sum += item.practice));
             return sum;
         });
         setTotalMiddle(() => {
             let sum = 0;
-            props.data.map((item: any) => (sum += item.middle));
+            props.data?.map((item: any) => (sum += item.middle));
             return sum;
         });
         setTotalFinal(() => {
             let sum = 0;
-            props.data.map((item: any) => (sum += item.final));
+            props.data?.map((item: any) => (sum += item.final));
             return sum;
         });
         setTotalScore(() => {
             let sum = 0;
-            props.data.map((item: any) => (sum += item.totalScore));
+            props.data?.map((item: any) => (sum += item.totalScore));
             return sum;
         });
     }, [props.save]);
 
     useEffect(() => {
-        if (props.data.length !== 0) {
+        if (props.data?.length !== 0) {
             setTotalAvg(() => {
-                return totalScore / props.data.length;
+                return parseFloat((totalScore / props.data?.length).toFixed(1));
             });
         } else {
             setTotalAvg(0.0);
@@ -56,7 +56,7 @@ const Footer = (props: any) => {
     }, [totalScore, props.save]);
 
     useEffect(() => {
-        if (props.data.length !== 0) {
+        if (props.data?.length !== 0) {
             setTotalTier(() => {
                 let s = "";
                 if (totalAvg > 95) s = "A+";
