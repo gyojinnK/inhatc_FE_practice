@@ -10,9 +10,9 @@
 .form {
     background-color: white;
     width: 30vw;
-    height: 50vh;
+    height: 450px;
     left: calc(50% - 15vw);
-    top: calc(50% - 25vh);
+    top: calc(50% - 275px);
     position: absolute;
     border-radius: 25px;
     box-shadow: rgb(78, 78, 78) 5px 5px 10px;
