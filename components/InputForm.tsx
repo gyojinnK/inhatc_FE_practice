@@ -49,22 +49,38 @@ const InputForm = (props: any) => {
 
     const submitHandler = (e: any) => {
         e.preventDefault();
-        const finalData = {
-            id: Math.random().toString(),
-            complete: enteredComplete,
-            essential: enteredEssential,
-            sub_name: enteredSubName,
-            grade: enteredGrade,
-            attendance: enteredAttendance,
-            practice: enteredPractice,
-            middle: enteredMiddle,
-            final: enteredFinal,
-            totalScore:
-                enteredAttendance +
-                enteredPractice +
-                enteredMiddle +
-                enteredFinal,
-        };
+        let finalData = {};
+        if (enteredGrade !== 1) {
+            finalData = {
+                id: Math.random().toString(),
+                complete: enteredComplete,
+                essential: enteredEssential,
+                sub_name: enteredSubName,
+                grade: enteredGrade,
+                attendance: enteredAttendance,
+                practice: enteredPractice,
+                middle: enteredMiddle,
+                final: enteredFinal,
+                totalScore:
+                    enteredAttendance +
+                    enteredPractice +
+                    enteredMiddle +
+                    enteredFinal,
+            };
+        } else {
+            finalData = {
+                id: Math.random().toString(),
+                complete: enteredComplete,
+                essential: enteredEssential,
+                sub_name: enteredSubName,
+                grade: enteredGrade,
+                attendance: 0,
+                practice: 0,
+                middle: 0,
+                final: 0,
+                totalScore: 0,
+            };
+        }
         props.onAddNewData(finalData);
         props.onIsInputOpen(false);
         setEnteredSubName("");

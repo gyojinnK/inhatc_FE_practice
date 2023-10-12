@@ -3,6 +3,7 @@ import css from "@/styles/Footer.module.css";
 import { useEffect, useState } from "react";
 
 const Footer = (props: any) => {
+    const [filteredData, setFilteredData] = useState([]);
     const [totalGrade, setTotalGrade] = useState(0);
     const [totalAttendance, setTotalAttendance] = useState(0);
     const [totalPractice, setTotalPractice] = useState(0);
@@ -13,42 +14,60 @@ const Footer = (props: any) => {
     const [totalTier, setTotalTier] = useState("");
 
     useEffect(() => {
+        setFilteredData(() => {
+            const filtered = props.data.filter((item: any) => item.grade !== 1);
+            return filtered;
+        });
+    }, [props.data]);
+
+    console.log(filteredData);
+
+    useEffect(() => {
         setTotalGrade(() => {
             let sum = 0;
-            props.data?.map((item: any) => (sum += item.grade));
+            filteredData?.map((item: any) => (sum += item.grade));
             return sum;
         });
         setTotalAttendance(() => {
             let sum = 0;
-            props.data?.map((item: any) => (sum += item.attendance));
+            filteredData?.map((item: any) => (sum += item.attendance));
             return sum;
         });
         setTotalPractice(() => {
             let sum = 0;
-            props.data?.map((item: any) => (sum += item.practice));
+            filteredData?.map((item: any) => (sum += item.practice));
             return sum;
         });
         setTotalMiddle(() => {
             let sum = 0;
-            props.data?.map((item: any) => (sum += item.middle));
+            filteredData?.map((item: any) => (sum += item.middle));
             return sum;
         });
         setTotalFinal(() => {
             let sum = 0;
-            props.data?.map((item: any) => (sum += item.final));
+            filteredData?.map((item: any) => (sum += item.final));
             return sum;
         });
         setTotalScore(() => {
             let sum = 0;
-            props.data?.map((item: any) => (sum += item.totalScore));
+            filteredData?.map((item: any) => (sum += item.totalScore));
             return sum;
         });
     }, [props.save]);
 
+    console.log("totalScore : ", totalScore);
+    console.log("totalAvg : ", totalAvg);
+
     useEffect(() => {
-        if (props.data?.length !== 0) {
+        if (filteredData?.length !== 0) {
             setTotalAvg(() => {
-                return parseFloat((totalScore / props.data?.length).toFixed(1));
+                if (totalScore === 0) {
+                    return 0.0;
+                } else {
+                    return parseFloat(
+                        (totalScore / filteredData?.length).toFixed(1)
+                    );
+                }
             });
         } else {
             setTotalAvg(0.0);
@@ -56,7 +75,7 @@ const Footer = (props: any) => {
     }, [totalScore, props.save]);
 
     useEffect(() => {
-        if (props.data?.length !== 0) {
+        if (filteredData?.length !== 0) {
             setTotalTier(() => {
                 let s = "";
                 if (totalAvg > 95) s = "A+";
