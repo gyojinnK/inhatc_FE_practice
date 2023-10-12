@@ -182,7 +182,7 @@ const InputForm = (props: any) => {
                 }
                 .layout {
                     margin: 0 auto;
-                    width: 80%;
+                    width: fit-content;
                     text-align: left;
                 }
                 h2 {

@@ -9,9 +9,9 @@
 
 .form {
     background-color: white;
-    width: 20vw;
+    width: 30vw;
     height: 50vh;
-    left: calc(50% - 10vw);
+    left: calc(50% - 15vw);
     top: calc(50% - 25vh);
     position: absolute;
     border-radius: 25px;
