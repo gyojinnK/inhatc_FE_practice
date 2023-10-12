@@ -9,13 +9,14 @@
 
 .form {
     background-color: white;
-    width: 30vw;
+    width: 400px;
     height: 450px;
-    left: calc(50% - 15vw);
+    left: calc(50% - 200px);
     top: calc(50% - 275px);
     position: absolute;
     border-radius: 25px;
     box-shadow: rgb(78, 78, 78) 5px 5px 10px;
+    min-width: 400px;
 }
 
 .btnWrap {
