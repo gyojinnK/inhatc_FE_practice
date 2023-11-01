@@ -20,8 +20,6 @@ const Footer = (props: any) => {
         });
     }, [props.data]);
 
-    console.log(filteredData);
-
     useEffect(() => {
         setTotalGrade(() => {
             let sum = 0;
@@ -54,9 +52,6 @@ const Footer = (props: any) => {
             return sum;
         });
     }, [props.save]);
-
-    console.log("totalScore : ", totalScore);
-    console.log("totalAvg : ", totalAvg);
 
     useEffect(() => {
         if (filteredData?.length !== 0) {

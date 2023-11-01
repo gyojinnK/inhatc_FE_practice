@@ -10,11 +10,27 @@ const Wrap = (props: any) => {
     const [deleteIds, setDeleteIDs]: any = useState([]);
     const [isSave, setIsSave] = useState(false);
 
+    const checkingDup = (added: any) => {
+        let check = false;
+        data.map((item: any) => {
+            if (item.sub_name === added.sub_name) {
+                check = true;
+            } else {
+                check = false;
+            }
+        });
+        return check;
+    };
+
     const addDataHandler = (addFinalData: any) => {
         if (data?.length !== undefined) {
-            setData((prev: any) => {
-                return [...prev, addFinalData];
-            });
+            if (!checkingDup(addFinalData)) {
+                setData((prev: any) => {
+                    return [...prev, addFinalData];
+                });
+            } else {
+                alert("이미 등록된 과목입니다. 확인 후 다시시도하세요^^!");
+            }
         } else {
             setData(addFinalData);
         }
